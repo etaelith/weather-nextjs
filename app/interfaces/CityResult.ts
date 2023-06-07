@@ -52,7 +52,7 @@ export interface Forecast {
 }
 
 export interface Forecastday {
-  date: Date;
+  date: string;
   date_epoch: number;
   day: Day;
   astro: Astro;

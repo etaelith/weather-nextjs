@@ -1,37 +1,38 @@
 "use client";
-import type {CityResult} from "../interfaces/CityResult";
+import type {ChangeEvent, FormEvent} from "react";
+import type {CityResult, Forecastday} from "../interfaces/CityResult";
 
 import {useState} from "react";
 
-const variable = process.env.API_KEY;
+const variable = "a84e9f0c872946a09ca55108230506";
 
-async function getData(city: string) {
-  console.log(variable);
-  const res = await fetch(
-    `http://api.weatherapi.com/v1/forecast.json?key=${variable}&q=${city}&days=10`,
-  );
-
-  console.log(res);
-
-  // Recommendation: handle errors
-  if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    throw new Error("Failed to fetch data");
-  }
-
-  return res.json();
-}
 const useForm = () => {
   const [state, setState] = useState<string>("");
   const [results, setResults] = useState<CityResult | null>();
-  const handleSubmit = async (e) => {
+  const [days, setDays] = useState<Forecastday[]>();
+  const [loading, setLoading] = useState<boolean>(false);
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const result: CityResult = await getData(state);
+    setLoading(true);
+    try {
+      const res = await fetch(
+        `http://api.weatherapi.com/v1/forecast.json?key=${variable}&q=${state}&days=10`,
+      );
+      const data = (await res.json()) as CityResult;
 
-    setResults(result);
+      setResults(data);
+      setDays(data.forecast.forecastday);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setState(e.target.value);
   };
 
-  return {results, handleSubmit, state, setState};
+  return {results, handleSubmit, state, setState, handleChange, loading, days};
 };
 
 export default useForm;

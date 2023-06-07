@@ -1,20 +1,24 @@
 "use client";
 
+import type {ChangeEvent, FormEvent} from "react";
+
 interface FormProps {
-  handleSubmit: () => void;
-  setState: (string: string) => void;
+  handleSubmit: (e: FormEvent<HTMLFormElement>) => void;
+  handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
-function Form({handleSubmit, setState}: FormProps) {
+function Form({handleSubmit, handleChange}: FormProps) {
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="flex gap-4 border-red-500 border-2 rounded-lg p-4" onSubmit={handleSubmit}>
       <input
-        className="text-black "
+        className="text-black rounded-lg"
         name="city"
         placeholder="City"
         type="text"
-        onChange={(e) => setState(e.target.value)}
+        onChange={handleChange}
       />
-      <button>Search</button>
+      <button className="border-red-500 rounded-lg border-2 p-1" type="submit">
+        Search
+      </button>
     </form>
   );
 }

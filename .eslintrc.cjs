@@ -23,7 +23,6 @@ module.exports = {
     },
   },
   rules: {
-    "@typescript-eslint/naming-convention": "error",
     "prettier/prettier": [
       "warn",
       {
