@@ -16,7 +16,7 @@ const useForm = () => {
     setLoading(true);
     try {
       const res = await fetch(
-        `http://api.weatherapi.com/v1/forecast.json?key=${variable}&q=${state}&days=10&lang=es`,
+        `https://api.weatherapi.com/v1/forecast.json?key=${variable}&q=${state}&days=10&lang=es`,
       );
       const data = (await res.json()) as CityResult;
 
