@@ -7,7 +7,9 @@ interface WeatherProps {
 function CardMain({results}: WeatherProps) {
   return (
     <div className="flex flex-col w-full h-auto border-red-500 border-2 rounded-md p-2">
-      <h3>Monday, June 5, 2023</h3>
+      <h3 className="bg-gradient-to-r from-blue-400 to-red-400 bg-clip-text text-transparent">
+        Monday, June 5, 2023
+      </h3>
 
       <div className="flex justify-between p-2">
         <div className="flex flex-col justify-around">
@@ -20,7 +22,7 @@ function CardMain({results}: WeatherProps) {
           <Image
             alt={results.current.condition.text}
             height={64}
-            src={results.current.condition.icon}
+            src={`https:${results.current.condition.icon}`}
             width={64}
           />
           <h6 className="text-xs text-center">{results.current.condition.text}</h6>
@@ -28,11 +30,13 @@ function CardMain({results}: WeatherProps) {
       </div>
       <div className="flex justify-evenly border-t-2 mt-2 p-2">
         <div className="flex flex-col justify-center items-center">
-          <h5 className="">{results.forecast.forecastday[0].date}</h5>
+          <h5 className="bg-gradient-to-r from-blue-400 to-red-400 bg-clip-text text-transparent">
+            {results.forecast.forecastday[0].date}
+          </h5>
           <Image
             alt={results.forecast.forecastday[0].day.condition.text}
             height={64}
-            src={results.forecast.forecastday[0].day.condition.icon}
+            src={`https:${results.forecast.forecastday[0].day.condition.icon}`}
             width={64}
           />
           <h4>{results.forecast.forecastday[0].day.avgtemp_c} °C</h4>
@@ -40,11 +44,13 @@ function CardMain({results}: WeatherProps) {
         </div>
         <div className="border-r-2" />
         <div className="flex flex-col justify-center items-center">
-          <h5>{results.forecast.forecastday[1].date}</h5>
+          <h5 className="bg-gradient-to-r from-blue-400 to-red-400 bg-clip-text text-transparent">
+            {results.forecast.forecastday[1].date}
+          </h5>
           <Image
             alt={results.forecast.forecastday[1].day.condition.text}
             height={64}
-            src={results.forecast.forecastday[1].day.condition.icon}
+            src={`https:${results.forecast.forecastday[1].day.condition.icon}`}
             width={64}
           />
           <h4>{results.forecast.forecastday[1].day.avgtemp_c}°C</h4>
