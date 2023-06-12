@@ -10,7 +10,7 @@ function Form({handleSubmit, handleChange}: FormProps) {
   return (
     <form className="flex gap-4 border-red-500 border-2 rounded-lg p-4" onSubmit={handleSubmit}>
       <input
-        className="text-black rounded-lg"
+        className="text-black rounded-lg pl-2"
         name="city"
         placeholder="City"
         type="text"

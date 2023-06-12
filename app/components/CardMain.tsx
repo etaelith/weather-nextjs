@@ -16,7 +16,14 @@ function CardMain({results}: WeatherProps) {
           <h5 className="text-sm">
             {results.location.name}, {results.location.region}
           </h5>
-          <h1>{results.current.temp_c} °C</h1>
+          <div className="flex justify-between w-full gap-8">
+            <h1>Temp: {results.current.temp_c}°C</h1>
+            <div className="border-r-2 border-red-500" />
+            <div className="text-xs">
+              <h4>Humidity: {results.current.humidity}%</h4>
+              <h4>Wind: {results.current.wind_kph} Km</h4>
+            </div>
+          </div>
         </div>
         <div>
           <Image

@@ -16,7 +16,7 @@ function LogicContainer() {
       ) : results ? (
         <CardMain results={results} />
       ) : null}
-      {days ? <TenDays days={days} /> : null}
+      {loading ? null : days ? <TenDays days={days} /> : null}
     </>
   );
 }
