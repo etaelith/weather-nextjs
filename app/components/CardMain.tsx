@@ -8,7 +8,7 @@ function CardMain({results}: WeatherProps) {
   return (
     <div className="flex flex-col w-full h-auto border-red-500 border-2 rounded-md p-2">
       <h3 className="bg-gradient-to-r from-blue-400 to-red-400 bg-clip-text text-transparent">
-        Monday, June 5, 2023
+        {results.current.last_updated}
       </h3>
 
       <div className="flex justify-between p-2">
